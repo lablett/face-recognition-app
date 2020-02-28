@@ -64,7 +64,7 @@ class App extends Component {
   }
 
   onRouteChange = (route) => {
-    if (route ==='signout'){
+    if (route ==='signOut'){
       this.setState({isSignedIn: false})
     } else if (route === 'home'){
       this.setState({isSignedIn: true})
@@ -77,7 +77,7 @@ class App extends Component {
     const image = document.getElementById('input-image');
     const width = Number(image.width);
     const height = Number(image.height);
-    console.log(clarifaiFace)
+    // console.log(clarifaiFace)
     // Calculate location of bounding box corners - response data is relative percentage of image
     return {
       leftCol: clarifaiFace.left_col*width,
@@ -89,27 +89,28 @@ class App extends Component {
 
   displayFaceLocation = (box) => {
     this.setState({box: box})
-    console.log(box)
+    // console.log(box)
   }
 
   render() {
+    const { isSignedIn, inputURL, route, box } = this.state;
     return (
       <div className="App">
         <Particles className='particles'
           params={particlesOptions}
         />
-        <Navigation isSignedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange}/>
-        { this.state.route === 'home'
+        <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}/>
+        { route === 'home'
           ? <div>
             <Logo />
             <Rank />
             <ImageLinkForm
               onInputChange={this.onInputChange}
               onInputSubmit={this.onInputSubmit} />
-            <FaceRecognition box={this.state.box} inputURL={this.state.inputURL} />
+            <FaceRecognition box={box} inputURL={inputURL} />
             </div>
           : (
-            this.state.route === 'signIn'
+            route === 'signIn'
               ? <SignIn onRouteChange={this.onRouteChange} />
               : <Register onRouteChange={this.onRouteChange} />
           )
