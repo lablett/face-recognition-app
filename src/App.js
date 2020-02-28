@@ -48,7 +48,8 @@ class App extends Component {
     }
   }
 
-    onInputChange = (event) => {
+
+  onInputChange = (event) => {
     // this.setState({inputURL: event.target.value});
     this.setState({input: event.target.value})
   }
