@@ -44,10 +44,27 @@ class App extends Component {
       inputURL: '',
       box: {},
       route: 'signIn',
-      isSignedIn: false
+      isSignedIn: false,
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: 0,
+        joined: ''
+      }
     }
   }
 
+  loadUser = (data) => {
+    this.setState({user: {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      entries: data.entries,
+      joined: data.joined
+    }})
+    console.log(this.state.user)
+  }
 
   onInputChange = (event) => {
     // this.setState({inputURL: event.target.value});
@@ -105,7 +122,7 @@ class App extends Component {
         { route === 'home'
           ? <div>
             <Logo />
-            <Rank />
+            <Rank name={this.state.user.name} entries={this.state.user.entries}/>
             <ImageLinkForm
               onInputChange={this.onInputChange}
               onInputSubmit={this.onInputSubmit} />
@@ -113,8 +130,8 @@ class App extends Component {
             </div>
           : (
             route === 'register'
-              ? <Register onRouteChange={this.onRouteChange} />
-              : <SignIn onRouteChange={this.onRouteChange} />
+              ? <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
+              : <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
           )
           
         }
