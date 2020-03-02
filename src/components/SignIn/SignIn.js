@@ -10,6 +10,7 @@ class SignIn extends React.Component {
           signInPassword: ''
         }
       }
+    
 
     onInputChange = (event) => {
         let inputID = event.target.id;
@@ -24,7 +25,7 @@ class SignIn extends React.Component {
                 break;
         }
     }
-
+    
     onSignInSubmit = () => {
         console.log(JSON.stringify({
             email: this.state.signInEmail,
@@ -41,7 +42,6 @@ class SignIn extends React.Component {
         })
         .then(response => response.json())
         .then(user => {
-            console.log(user)
             if (user.id){
                 this.props.loadUser(user);
                 this.props.onRouteChange('home');

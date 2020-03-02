@@ -35,6 +35,20 @@ const particlesOptions = {
   }
 }
 
+const initialState = {
+  input: '',
+    inputURL: '',
+    box: {},
+    route: 'signIn',
+    isSignedIn: false,
+    user: {
+      id: '',
+      name: '',
+      email: '',
+      entries: 0,
+      joined: ''
+    }
+};
 
 class App extends Component {
   constructor() {
@@ -55,6 +69,10 @@ class App extends Component {
     }
   }
 
+  componentDidMount(){
+    console.log('app state', this.state)
+  }
+  
   loadUser = (data) => {
     this.setState({user: {
       id: data.id,
@@ -63,7 +81,6 @@ class App extends Component {
       entries: data.entries,
       joined: data.joined
     }})
-    console.log(this.state.user)
   }
 
   onInputChange = (event) => {
@@ -90,6 +107,7 @@ class App extends Component {
           .then(count => {
             this.setState(Object.assign(this.state.user, {entries: count}))
           })
+          .catch(console.log)
         }
         this.displayFaceLocation(this.calculateFaceLocation(response))
       })
@@ -98,8 +116,7 @@ class App extends Component {
 
   onRouteChange = (route) => {
     if (route ==='signOut'){
-      this.setState({isSignedIn: false})
-      console.log(this.state)
+      this.setState(initialState)
     } else if (route === 'home'){
       this.setState({isSignedIn: true})
     }
