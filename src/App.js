@@ -72,7 +72,7 @@ class App extends Component {
   }
 
   onInputSubmit = () => {
-    this.setState({inputURL: this.state.input})
+    this.setState({inputURL: this.state.input, box: {}})
     app.models
       .predict(
         Clarifai.FACE_DETECT_MODEL,
@@ -99,10 +99,10 @@ class App extends Component {
   onRouteChange = (route) => {
     if (route ==='signOut'){
       this.setState({isSignedIn: false})
+      console.log(this.state)
     } else if (route === 'home'){
       this.setState({isSignedIn: true})
     }
-    console.log(route)
     this.setState({route: route})
   }
 
