@@ -35,7 +35,7 @@ class Register extends React.Component {
             password: this.state.registerPassword
         }))
         // Fetch POST request to server sending the user-subnmitted email and password combination
-        fetch('http://localhost:3000/register', {
+        fetch('https://infinite-anchorage-19454.herokuapp.com/register', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

@@ -32,7 +32,7 @@ class SignIn extends React.Component {
             password: this.state.signInPassword
         }))
         // Fetch POST request to server sending the user-subnmitted email and password combination
-        fetch('http://localhost:3000/sign-in', {
+        fetch('https://infinite-anchorage-19454.herokuapp.com/sign-in', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

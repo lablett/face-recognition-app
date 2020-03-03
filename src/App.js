@@ -79,7 +79,7 @@ class App extends Component {
 
   onInputSubmit = () => {
     this.setState({inputURL: this.state.input, box: {}})
-      fetch('http://localhost:3000/imageURL', {
+      fetch('https://infinite-anchorage-19454.herokuapp.com/imageURL', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -89,7 +89,7 @@ class App extends Component {
       .then(response => response.json())
       .then(response => {
         if (response) {
-          fetch('http://localhost:3000/image', {
+          fetch('https://infinite-anchorage-19454.herokuapp.com/image', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
