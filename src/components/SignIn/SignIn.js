@@ -27,10 +27,6 @@ class SignIn extends React.Component {
     }
     
     onSignInSubmit = () => {
-        console.log(JSON.stringify({
-            email: this.state.signInEmail,
-            password: this.state.signInPassword
-        }))
         // Fetch POST request to server sending the user-subnmitted email and password combination
         fetch('https://infinite-anchorage-19454.herokuapp.com/sign-in', {
             method: 'post',

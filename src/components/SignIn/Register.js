@@ -29,11 +29,6 @@ class Register extends React.Component {
     }
 
     onRegisterSubmit = () => {
-        console.log(JSON.stringify({
-            name: this.state.registerName,
-            email: this.state.registerEmail,
-            password: this.state.registerPassword
-        }))
         // Fetch POST request to server sending the user-subnmitted email and password combination
         fetch('https://infinite-anchorage-19454.herokuapp.com/register', {
             method: 'post',
@@ -46,7 +41,6 @@ class Register extends React.Component {
         })
         .then(response => response.json())
         .then(user => {
-            console.log(user)
             if (user.id){
                 this.props.loadUser(user);
                 this.props.onRouteChange('home');
